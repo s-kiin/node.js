@@ -27,11 +27,20 @@ function onRequest(request, response)
 {
 	//var pathName = url.parse('http://user:pass@host.com:8080/start?query=string#hash').pathname;
 	//console.log('pathName:%o',pathName);// 打印一个对象
+	//var postData = "";
+	
 	var pathName = url.parse(request.url).pathname;
 	console.log("Request" +pathName+ "received");
 	
-	route(handle, pathName, response);
+	//request.setEncoding("utf8");
 	
+	/*request.addListener("data",function(postDataChunk){
+		postData += postDataChunk;
+		console.log("Received POST data chunk '"+ postDataChunk + "'.");
+	});*/
+	
+	route(handle, pathName, response, request);
+		
 	/*response.writeHead(200,{"Content-Type":"text/plain"});
 	response.write(content);
 	response.end();*/
